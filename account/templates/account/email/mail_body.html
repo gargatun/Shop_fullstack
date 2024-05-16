@@ -1,11 +1,11 @@
-<h1>You are almost there, {{ user.username }}!</h1><br>
+<h1>Вы почти у цели, {{ user.username }}!</h1><br>
 
 <p>
-    Please click <a href="{{ link }}">here</a> to confirm your account.
+    Пожалуйста, нажмите <a href="{{ link }}">здесь</a> чтобы подтвердить учетную запись.
 </p>
 <p>
-    Or copy the link below into your browser. <br>
+    Или скопируйте приведенную ниже ссылку в свой браузер. <br>
     {{ link }}
 </p>
 
-<strong>Token expires on {{ expiry|time:"TIME_FORMAT" }}</strong>
+<strong>Срок действия токена истекает {{ expiry|time:"TIME_FORMAT" }}</strong>

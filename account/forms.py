@@ -17,7 +17,7 @@ class UserCreateForm(UserCreationForm):
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super(UserCreateForm,self).__init__(*args, **kwargs)
 
-        self.fields['email'].label = 'Your Email Address'
+        self.fields['email'].label = 'Ваш адрес электронной почты'
         self.fields['email'].required = True
         self.fields['username'].help_text = ''
         self.fields['password1'].help_text = ''
@@ -27,14 +27,14 @@ class UserCreateForm(UserCreationForm):
         email = self.cleaned_data['email'].lower()
 
         if User.objects.filter(email=email).exists() and len(email) > 254:
-            raise forms.ValidationError("Email is already in use or too long")
+            raise forms.ValidationError("Электронная почта уже используется или слишком длинная")
         
         return email
         
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(widget=TextInput(attrs={'class': 'form-control'}))
-    password = forms.CharField(widget=PasswordInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(widget=PasswordInput(attrs={'class': 'form-control'}), label="Пароль")
 
 
 class UserUpdateForm(forms.ModelForm):
@@ -43,8 +43,16 @@ class UserUpdateForm(forms.ModelForm):
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super(UserUpdateForm,self).__init__(*args, **kwargs)
 
-        self.fields['email'].label = 'Your Email Address'
+        self.fields['email'].label = 'Ваш Email'
         self.fields['email'].required = True
+    
+    def clean_email(self):
+        email = self.cleaned_data['email'].lower()
+
+        if User.objects.filter(email=email).exclude(id=self.instance.id).exists() or len(email) > 254:
+            raise forms.ValidationError("Электронная почта уже используется или слишком длинная")
+        
+        return email
         
     class Meta:
         model = User

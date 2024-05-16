@@ -8,27 +8,27 @@
 
     <br>
     <div class="container bg-white shadow-md p-3">
-        <h4>Welcome, {{ user.username }}!</h4>
+        <h4>Добро пожаловать, {{ user.username }}!</h4>
 
         <hr>
 
-        <h6>Personal information</h6>
+        <h6>Личная информация</h6>
 
         <a href="{% url 'account:logout' %}">
         <button class="btn btn-primary">
-            Logout
+            Выход 
             </button>
         </a>
 
         <a href="{% url 'account:profile-management' %}">
             <button class="btn btn-success">
-                Profile-management
+                Управление профилем
                 </button>
             </a>
         
             <a href="{% url 'account:delete-user' %}">
                 <button class="btn btn-warning">
-                    Delete Account
+                    Удалить аккаунт
                     </button>
                 </a>
 
