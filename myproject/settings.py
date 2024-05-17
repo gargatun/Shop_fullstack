@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     "django_email_verification",
     'sorl.thumbnail',
+    'django_celery_beat',
+    'django_celery_results',
     # apps
     "shop.apps.ShopConfig",
     "cart.apps.CartConfig",
@@ -186,9 +188,16 @@ EMAIL_USE_SSL = True
 STRIPE_PUBLISHABLE_KEY = env("STRIPE_PUBLISHABLE_KEY")
 STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY")
 STRIPE_API_VERSION = env("STRIPE_API_VERSION")
+STRIPE_WEBHOOK_SECRET = env('STRIPE_WEBHOOK_SECRET')
 
 # Yookassa
 YOOKASSA_SECRET_KEY = env("YOOKASSA_SECRET_KEY")
 YOOKASSA_SHOP_ID = env("YOOKASSA_SHOP_ID")
 
 
+#Celery
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_RESULT_EXTENDED = True
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers.DatabaseScheduler'
