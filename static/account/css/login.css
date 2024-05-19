@@ -1,0 +1,12 @@
+body {
+    background-color: gray;
+  }
+  
+  .btn-register {
+    transition: 0.5s;
+  }
+  
+  .btn-register:hover {
+    background-color: forestgreen;
+    transform: scale(1.1);
+  }
