@@ -31,6 +31,7 @@ urlpatterns = [
     path('payment/', include('payment.urls', namespace='payment')),
     path("recommend/", include('recommend.urls', namespace='recommend')),
     path('email/', include(email_urls), name='email-verification'),
+    path('api/v1/', include('api.urls', namespace='api')),
     path('', views.index, name='index'),
 
 ]
@@ -38,5 +39,6 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 
 
